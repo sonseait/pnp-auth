@@ -36,7 +36,7 @@ export default class NodeFetchClient implements IHttpClientImpl {
     this.mergeHeaders(headers, authData.headers);
 
     const host: string = (urlParse(url)).host;
-    const isOnPrem: boolean = host.indexOf('.sharepoint.com') === -1 && host.indexOf('.sharepoint.cn') === -1;
+    const isOnPrem: boolean = !host.endsWith('.sharepoint.com') && !host.endsWith('.sharepoint.cn');
 
     // explicit full metadata for on-premise
     if (isOnPrem) {
